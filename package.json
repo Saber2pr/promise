@@ -1,0 +1,29 @@
+{
+  "name": "@saber2pr/promise",
+  "version": "0.0.1",
+  "description": "> promise.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Saber2pr/-saber2pr-promise.git"
+  },
+  "author": "saber2pr",
+  "license": "ISC",
+  "files": [
+    "lib/core/*",
+    "lib/index.*"
+  ],
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "jest src/test/*.test.ts",
+    "start": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.13",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.3"
+  },
+  "dependencies": {
+    "@types/node": "^12.0.2"
+  }
+}
