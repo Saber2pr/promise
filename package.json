@@ -4,7 +4,7 @@
   "description": "> promise.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Saber2pr/-saber2pr-promise.git"
+    "url": "git+https://github.com/Saber2pr/promise.git"
   },
   "author": "saber2pr",
   "license": "ISC",
