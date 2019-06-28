@@ -89,4 +89,10 @@ describe('promise', () => {
     result.push(3)
     if (result.length === 3) finish()
   })
+
+  it('executorRunInSync', () => {
+    const result = []
+    new Promise(() => result.push('A'))
+    expect(result).toEqual(['A'])
+  })
 })
