@@ -2,7 +2,7 @@
  * @Author: saber2pr
  * @Date: 2019-05-18 21:48:02
  * @Last Modified by: saber2pr
- * @Last Modified time: 2019-05-18 22:16:09
+ * @Last Modified time: 2019-06-28 21:31:36
  */
 import { microtask } from './microtask'
 
@@ -22,7 +22,7 @@ export type Status = 'pending' | 'resolved' | 'rejected'
 export class Promise<T> {
   public constructor(executor: Executor<T>) {
     try {
-      microtask(() => executor(this.resolve, this.reject))
+      executor(this.resolve, this.reject)
     } catch (error) {
       this.reject(error)
     }
@@ -33,21 +33,21 @@ export class Promise<T> {
   private onResolvedCallback: Array<Resolve<T>> = []
   private onRejectedCallback: Array<Reject<T>> = []
 
-  private resolve: Resolve<T> = value => {
+  private resolve: Resolve<T> = value => microtask(() => {
     if (this.status === 'pending') {
       this.status = 'resolved'
       this.data = value
       this.onResolvedCallback.forEach(resolve => resolve(value))
     }
-  }
+  })
 
-  private reject: Reject<T> = reason => {
+  private reject: Reject<T> = reason => microtask(() => {
     if (this.status === 'pending') {
       this.status = 'rejected'
       this.data = reason
       this.onRejectedCallback.forEach(reject => reject(reason))
     }
-  }
+  })
 
   public then: Then<T> = (
     onfulfilled = value => value,
