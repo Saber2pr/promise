@@ -10,17 +10,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.4
         
-      - name: Cd Workspace
-        run: cd ./site
-
       - name: Install Deps
-        run: yarn install
+        run: cd ./site && yarn install
 
       - name: Build App
-        run: yarn build
+        run: cd ./site && yarn build
         
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          publish_dir: ./site/build
